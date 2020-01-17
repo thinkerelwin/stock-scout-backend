@@ -24,5 +24,6 @@ app.use(compress());
 app.use(router.routes());
 
 server.listen(PORT, async () => {
+  console.log(`env: ${process.env.NODE_ENV}`);
   console.log(`${apiName} Ver. ${version} listening ${PORT}`);
 });
