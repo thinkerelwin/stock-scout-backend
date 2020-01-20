@@ -1,3 +1,3 @@
 module.exports = {
-  extends: "koa"
+  extends: "react-app"
 };

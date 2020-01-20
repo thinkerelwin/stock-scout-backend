@@ -1,5 +1,3 @@
-"use strict";
-
 const http = require("http");
 const Koa = require("koa");
 const helmet = require("koa-helmet");
@@ -23,7 +21,7 @@ const server = http.createServer(app.callback());
 app.use(compress());
 app.use(router.routes());
 
-server.listen(PORT, async () => {
+server.listen(PORT, () => {
   console.log(`env: ${process.env.NODE_ENV}`);
   console.log(`${apiName} Ver. ${version} listening ${PORT}`);
 });
