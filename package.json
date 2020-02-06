@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "set NODE_ENV=development&& nodemon index.js",
-    "prod": "set NODE_ENV=production&& node index.js"
+    "dev": "NODE_ENV=development nodemon index.js",
+    "prod": "NODE_ENV=production node index.js",
+    "dev-win": "set NODE_ENV=development&& nodemon index.js",
+    "prod-win": "set NODE_ENV=production&& node index.js"
   },
   "author": "Elwin",
   "license": "MIT",
