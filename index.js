@@ -15,7 +15,7 @@ const app = new Koa();
 app.use(logger());
 app.use(helmet());
 app.use(bodyParser());
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 const server = http.createServer(app.callback());
 app.use(compress());
