@@ -1,6 +1,9 @@
 {
   "name": "stock-scout-backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "simple boilerplate for express app",
   "main": "index.js",
   "scripts": {
