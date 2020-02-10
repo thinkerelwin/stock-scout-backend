@@ -18,28 +18,29 @@ const instanceWithoutExtraParams = instanceWrapperWithoutExtraParams(
 );
 
 function instanceWrapper({ instance, token }) {
-  return (method, ctx, next) => {
+  return (ctx, next) => {
     const params = paramsWithToken(ctx.params, token);
 
-    return baseInstance({ instance, params, method, ctx, next });
+    return baseInstance({ instance, params, ctx, next });
   };
 }
 
 function instanceWrapperWithoutExtraParams({ instance, token }) {
-  return (method, unwantedList, ctx, next) => {
+  return (unwantedList, ctx, next) => {
     const requestParams = paramsWithToken(ctx.params, token);
 
     for (let props of unwantedList) {
       delete requestParams.params[props];
     }
 
-    return baseInstance({ instance, params: requestParams, method, ctx, next });
+    return baseInstance({ instance, params: requestParams, ctx, next });
   };
 }
 
-async function baseInstance({ instance, params, method, ctx, next }) {
+async function baseInstance({ instance, params, ctx, next }) {
   try {
-    const { data } = await instance.get(`${method}`, params);
+    console.log(ctx.url, params);
+    const { data } = await instance.get(ctx.url, params);
     ctx.body = data;
     return (ctx.status = 200);
   } catch (err) {
@@ -57,7 +58,7 @@ function paramsWithToken(params, token) {
   };
 }
 
-function instanceGenerator(baseURL, timeout = 2500) {
+function instanceGenerator(baseURL, timeout = 3000) {
   return axios.create({
     baseURL,
     timeout
@@ -66,68 +67,47 @@ function instanceGenerator(baseURL, timeout = 2500) {
 
 // Sectors
 router.get("/ref-data/sectors", async (ctx, next) => {
-  return await instance(`/ref-data/sectors`, ctx, next);
+  return await instance(ctx, next);
+});
+
+// Collections
+router.get("/stock/market/collection/:collectionType", async (ctx, next) => {
+  return await instanceWithoutExtraParams(["collectionType"], ctx, next);
 });
 
 // List
 // options: ctx.params.type = mostactive, gainers, losers
 // listLimit start from 0
 router.get("/stock/market/list/:type/:listLimit", async (ctx, next) => {
-  return await instanceWithoutExtraParams(
-    `/stock/market/list/${ctx.params.type}`,
-    ["type"],
-    ctx,
-    next
-  );
+  return await instanceWithoutExtraParams(["type"], ctx, next);
 });
 
 // Intraday Prices
 router.get("/stock/:symbol/intraday-prices", async (ctx, next) => {
   ctx.params.chartIEXOnly = true;
-  return await instanceWithoutExtraParams(
-    `/stock/${ctx.params.symbol}/intraday-prices`,
-    ["symbol"],
-    ctx,
-    next
-  );
+  return await instanceWithoutExtraParams(["symbol"], ctx, next);
 });
 
 // Historical Prices
 // longest availabe time period: 5 year
 router.get("/stock/:symbol/chart/:range/", async (ctx, next) => {
   // ctx.params.chartCloseOnly = true;
-  return await instanceWithoutExtraParams(
-    `/stock/${ctx.params.symbol}/chart/${ctx.params.range}`,
-    ["symbol", "range"],
-    ctx,
-    next
-  );
+  return await instanceWithoutExtraParams(["symbol", "range"], ctx, next);
 });
 
 // Company
 router.get("/stock/:symbol/company", async (ctx, next) => {
-  return await instanceWithoutExtraParams(
-    `/stock/${ctx.params.symbol}/company`,
-    ["symbol"],
-    ctx,
-    next
-  );
+  return await instanceWithoutExtraParams(["symbol"], ctx, next);
 });
 
 // Logo
 router.get("/stock/:symbol/logo", async (ctx, next) => {
-  return await instanceWithoutExtraParams(
-    `/stock/${ctx.params.symbol}/logo`,
-    ["symbol"],
-    ctx,
-    next
-  );
+  return await instanceWithoutExtraParams(["symbol"], ctx, next);
 });
 
 // News
 router.get("/stock/:symbol/news/last/:articleNumber", async (ctx, next) => {
   return await instanceWithoutExtraParams(
-    `/stock/${ctx.params.symbol}/news/last/${ctx.params.articleNumber}`,
     ["symbol", "articleNumber"],
     ctx,
     next
