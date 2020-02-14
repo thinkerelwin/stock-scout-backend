@@ -39,7 +39,7 @@ function instanceWrapperWithoutExtraParams({ instance, token }) {
 
 async function baseInstance({ instance, params, ctx, next }) {
   try {
-    console.log(ctx.url, params);
+    // console.log(ctx.url, params);
     const { data } = await instance.get(ctx.url, params);
     ctx.body = data;
     return (ctx.status = 200);

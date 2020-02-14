@@ -1,8 +1,9 @@
 node_modules
-.vscode
+.vscode/launch.json
 *.log
 logs
 temp
 package-lock.json
+
 .env
 *.code-workspace
