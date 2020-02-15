@@ -114,6 +114,12 @@ router.get("/stock/:symbol/news/last/:articleNumber", async (ctx, next) => {
   );
 });
 
+// batchNews
+// stock/market/batch?symbols=fb,amzn,goog&types=news&last=1&token=Tpk_40a566793a33427bb119457e775ae4b5
+router.get("/stock/market/batch", async (ctx, next) => {
+  return await instance(ctx, next);
+});
+
 // Symbols
 router.get("/ref-data/symbols", async (ctx, next) => {
   return await instance(`/ref-data/symbols`, ctx, next);
