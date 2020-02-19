@@ -95,6 +95,11 @@ router.get("/stock/:symbol/chart/:range/", async (ctx, next) => {
   return await instanceWithoutExtraParams(["symbol", "range"], ctx, next);
 });
 
+// Quote
+router.get("/stock/:symbol/quote", async (ctx, next) => {
+  return await instanceWithoutExtraParams(["symbol"], ctx, next);
+});
+
 // Company
 router.get("/stock/:symbol/company", async (ctx, next) => {
   return await instanceWithoutExtraParams(["symbol"], ctx, next);
@@ -115,7 +120,6 @@ router.get("/stock/:symbol/news/last/:articleNumber", async (ctx, next) => {
 });
 
 // batchNews
-// stock/market/batch?symbols=fb,amzn,goog&types=news&last=1&token=Tpk_40a566793a33427bb119457e775ae4b5
 router.get("/stock/market/batch", async (ctx, next) => {
   return await instance(ctx, next);
 });
