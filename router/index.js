@@ -124,6 +124,11 @@ router.get("/stock/market/batch", async (ctx, next) => {
   return await instance(ctx, next);
 });
 
+// batchOnSymbol
+router.get("/stock/:symbol/batch", async (ctx, next) => {
+  return await instanceWithoutExtraParams(["symbol"], ctx, next);
+});
+
 // Symbols
 router.get("/ref-data/symbols", async (ctx, next) => {
   return await instance(`/ref-data/symbols`, ctx, next);
