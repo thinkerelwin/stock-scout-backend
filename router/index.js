@@ -12,6 +12,12 @@ const instanceParts =
         token: process.env.IEX_CLOUD_API_KEY_SANDBOX
       };
 
+// to save data usage, collection api use sandbox type
+const sandboxInstanceWithoutExtraParams = instanceWrapperWithoutExtraParams({
+  instance: instanceGenerator("https://sandbox.iexapis.com/stable/"),
+  token: process.env.IEX_CLOUD_API_KEY_SANDBOX
+});
+
 const instance = instanceWrapper(instanceParts);
 const instanceWithoutExtraParams = instanceWrapperWithoutExtraParams(
   instanceParts
@@ -72,7 +78,7 @@ router.get("/ref-data/sectors", async (ctx, next) => {
 
 // Collections
 router.get("/stock/market/collection/:collectionType", async (ctx, next) => {
-  return await instanceWithoutExtraParams(["collectionType"], ctx, next);
+  return await sandboxInstanceWithoutExtraParams(["collectionType"], ctx, next);
 });
 
 // List
