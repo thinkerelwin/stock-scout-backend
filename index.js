@@ -14,7 +14,7 @@ const app = new Koa();
 
 const AcceptedUrl =
   process.env.NODE_ENV === "production"
-    ? "https://stock-scout.now.sh/"
+    ? "https://stock-scout.now.sh"
     : "http://localhost:3000";
 
 app.use(logger());
