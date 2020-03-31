@@ -12,10 +12,15 @@ const router = require("./router/");
 const PORT = process.env.PORT || 3000;
 const app = new Koa();
 
+const AcceptedUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://stock-scout.now.sh/"
+    : "http://localhost:3000";
+
 app.use(logger());
 app.use(helmet());
 app.use(bodyParser());
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: AcceptedUrl }));
 
 const server = http.createServer(app.callback());
 app.use(compress());
