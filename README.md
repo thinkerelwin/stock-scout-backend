@@ -12,7 +12,7 @@ IEX_CLOUD_API_KEY_SANDBOX=your_sandbox_key_on_IEX_CLOUD
 IEX_CLOUD_API_KEY=your_real_key 
 ```
 
-[How to get the IEX Cloud key?](https://iexcloud.io/) click 'get started' button to register a free tier account
+[How to get the IEX Cloud key?](https://iexcloud.io/) Click 'get started' button to register a free tier account
 
 ### Installing
 
