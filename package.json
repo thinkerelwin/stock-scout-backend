@@ -14,26 +14,26 @@
   "author": "Elwin",
   "license": "MIT",
   "dependencies": {
-    "@koa/cors": "^3.0.0",
-    "axios": "^0.19.1",
-    "dotenv": "^8.2.0",
-    "koa": "^2.11.0",
-    "koa-bodyparser": "^4.2.1",
-    "koa-compress": "^3.0.0",
-    "koa-helmet": "^5.2.0",
+    "@koa/cors": "^3.1.0",
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0",
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^4.3.0",
+    "koa-compress": "^5.1.0",
+    "koa-helmet": "^6.1.0",
     "koa-logger": "^3.2.1",
-    "koa-router": "^8.0.7"
+    "koa-router": "^10.1.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "cross-env": "^7.0.0",
-    "eslint": "^6.8.0",
-    "eslint-config-react-app": "^5.1.0",
-    "eslint-plugin-flowtype": "^3.13.0",
-    "eslint-plugin-import": "^2.20.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.0",
-    "eslint-plugin-react-hooks": "^1.7.0",
-    "nodemon": "^2.0.2"
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.1.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.14"
   }
 }
