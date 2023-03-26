@@ -5,23 +5,22 @@ const instanceParts =
   process.env.NODE_ENV === "production"
     ? {
         instance: instanceGenerator("https://cloud.iexapis.com/v1/"),
-        token: process.env.IEX_CLOUD_API_KEY
+        token: process.env.IEX_CLOUD_API_KEY,
       }
     : {
         instance: instanceGenerator("https://sandbox.iexapis.com/stable/"),
-        token: process.env.IEX_CLOUD_API_KEY_SANDBOX
+        token: process.env.IEX_CLOUD_API_KEY_SANDBOX,
       };
 
 // to save data usage, collection api use sandbox type
 const sandboxInstanceWithoutExtraParams = instanceWrapperWithoutExtraParams({
   instance: instanceGenerator("https://sandbox.iexapis.com/stable/"),
-  token: process.env.IEX_CLOUD_API_KEY_SANDBOX
+  token: process.env.IEX_CLOUD_API_KEY_SANDBOX,
 });
 
 const instance = instanceWrapper(instanceParts);
-const instanceWithoutExtraParams = instanceWrapperWithoutExtraParams(
-  instanceParts
-);
+const instanceWithoutExtraParams =
+  instanceWrapperWithoutExtraParams(instanceParts);
 
 function instanceWrapper({ instance, token }) {
   return (ctx, next) => {
@@ -59,15 +58,15 @@ function paramsWithToken(params, token) {
   return {
     params: {
       ...params,
-      token
-    }
+      token,
+    },
   };
 }
 
 function instanceGenerator(baseURL, timeout = 3000) {
   return axios.create({
     baseURL,
-    timeout
+    timeout,
   });
 }
 
@@ -138,6 +137,11 @@ router.get("/stock/:symbol/batch", async (ctx, next) => {
 // Symbols
 router.get("/ref-data/symbols", async (ctx, next) => {
   return await instance(`/ref-data/symbols`, ctx, next);
+});
+
+// health check
+router.get("/heartbeat", async (ctx, next) => {
+  return (ctx.status = 200);
 });
 
 module.exports = router;
